@@ -1,0 +1,725 @@
+html *
+{
+  font-family: Monospace !important;
+  color: e8ffef;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* general background color */
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #1A1E22;
+  color: #e8ffef;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+.content {
+  margin-left: 5vh;
+  margin-right: 5vh;
+}
+
+.content h1 {
+  color: #50B498;
+}
+
+a {
+  color: #50B498;
+  text-decoration: none;
+  font-weight: bold;
+  transition-duration: 0.4s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited{
+ color: #548dab;
+}
+
+a:active {
+  color: #e8ffef;
+}
+
+#header {
+  padding: 20px;
+  background: #E6E6FA;
+  text-align: center;
+}
+.copyright {
+  color: black;
+  font-size: 0.9em;
+  border-bottom: 1px solid #e0e4e8;
+  font-size: 25px;
+}
+
+ /* NAVIGATION BAR */
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #2f3e46;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.navbar li {
+  float: right;
+}
+
+.navbar li a {
+  display: block;
+  text-align: center;
+  color: #50B498;
+  text-decoration: none;
+  font-weight: bold;
+  transition-duration: 0.4s;
+  padding: 4vh;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.navbar li a:hover {
+  background-color: #111;
+  color: #50B498;
+}
+
+.navbar li a:active {
+  color: #e8ffef;
+}
+
+
+
+/* logo */
+#profile {
+  height: 15px;
+  padding: 0;
+  vertical-align: middle;
+}
+
+#logo {
+  height: 50px;
+  vertical-align: middle;
+  padding-bottom: 1vh;
+  padding-right: 2vh;
+  padding-left: 5vh;
+}
+
+.new_div {
+  float: left;
+  color: white;
+  font-style: bold;
+  max-height: 4vh;
+}
+/*title*/
+.new_div h3 {
+  padding: 5px;
+  display: inline-block;
+  height: auto;
+  color: #e8ffef;
+}
+
+.navbar li {
+  display: inline-block;
+  position: relative;
+  color: #50B498;
+}
+/* fancy underline */
+.navbar li:before,
+.navbar li:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #50B498;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+  direction: ltr;
+}
+
+.navbar li:before {
+  direction: rtl;
+  transform-origin: right;
+}
+
+.navbar li:hover:before {
+  transform: scaleX(1);
+}
+
+.navbar li:hover:after {
+  transform: scaleX(1);
+}
+
+/*NAV BAR END */
+
+/* Back and next buttons */
+.previous_page {
+  width: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none
+}
+#page_navigation a:link {
+  text-decoration: none;
+}
+#page_navigation a:visited {
+  text-decoration: none;
+}
+#page_navigation a:hover {
+  text-decoration: none;
+}
+#page_navigation a:active {
+  text-decoration: none;
+}
+
+.next_page {
+  width: 20px;
+  padding-left: 10px;
+  text-decoration: none;
+  padding-right: 10px;
+}
+
+
+/* homepage image, text and buttons*/
+.image-container {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay-text {
+  position: absolute;
+  width: 40%;
+  top: 18%;
+  left: 5%;
+  color: #fff;
+  padding: 20px;
+  font-size: 2vw;
+  text-align: left;
+}
+
+.overlay-title {
+  font-size: 3vw;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+.button {
+  background-color: white;
+  border: 2px solid #50B498;
+  color: #2f3e46;
+  padding: 1vw 2vw;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 4px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition-duration: 0.4s;
+  align: center;
+}
+
+.button:visited {
+  color: #2f3e46;
+}
+
+.button:hover {
+  border: 2px solid #50B498;
+  background-color: #50B498;
+  text-decoration: underline;
+  color: white;
+}
+
+
+#container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 15px;
+}
+.podcast-info {
+  text-align: center;
+}
+
+.podcast-info h2 {
+  font-size: 30px;
+  text-decoration: underline;
+  color: #50B498;
+}
+
+.podcast-image {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Category List */
+.category_list {
+  list-style-type: none;
+}
+
+.category_items {
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.category_items a {
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: 17px;
+  text-decoration: none;
+  border: 2px solid #FFFFFF30;
+  border-radius: 5px;
+}
+
+.category_items a:hover {
+    text-decoration: underline;
+    transition-duration: 0.4s;
+    border: 2px solid #50B498;
+    background-color: black;
+    border-radius: 5px;
+}
+
+
+button {
+  background-color: white;
+  color: black;
+  border: 2px solid white;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+button:hover {
+  background-color: #50B498;
+  border: 2px solid #50B498;
+  color: white;
+  text-decoration:underline;
+}
+
+
+footer {
+  background-color: #2f3e46;
+  font-size: 1.4vh;
+  text-align: center;
+  padding: 1vh;
+  width: 100%;
+}
+
+
+/* Browse */
+
+.browse-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.browse-content #page_navigation {
+    padding: 20px;
+}
+
+
+.podcast-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.podcast-item {
+    width: 350px;
+    height: 450px;
+    background-color: #2f3e46;
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-rows: 4fr, 1fr, 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center
+}
+
+.browse-podcast-img {
+    width: 300px;
+    height: 300px;
+    justify-self: center;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.browse-podcast-title {
+    align-self: center;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.browse-podcast-cat {
+    align-self: center;
+    font-size: 12px;
+}
+
+
+/* Review stars */
+/* Because I am a beginner at CSS, i would have initially used a drop down box/radio selection for the rating,
+however, I wanted to click activated stars. As we can not use JS, I found a tutorial for this.
+Reference:
+Afif, T. (2021, July 4). Scalable “star rating” without JS (and no SVG or image for the star).
+DEV Community; DEV Community. https://dev.to/afif/scalable-star-rating-without-js-and-no-svg-or-image-for-the-star-2mef
+*/
+
+.stars {
+  --s:50px;
+  position:relative;
+  display:inline-flex;
+}
+.stars input {
+  width:var(--s);
+  height:var(--s);
+  margin:0;
+  opacity:0;
+  cursor:pointer;
+}
+.stars i {
+  position:absolute;
+  inset:0 0 calc(var(--s)*0.1);
+  pointer-events:none;
+  --v1:transparent,#000 0.5deg 108deg,#0000 109deg;
+  --v2:transparent,#000 0.5deg  36deg,#0000  37deg;
+  -webkit-mask:
+    conic-gradient(from 54deg  at calc(var(--s)*0.68) calc(var(--s)*0.57),var(--v1)),
+    conic-gradient(from 90deg  at calc(var(--s)*0.02) calc(var(--s)*0.35),var(--v2)),
+    conic-gradient(from 126deg at calc(var(--s)*0.5)  calc(var(--s)*0.7) ,var(--v1)),
+    conic-gradient(from 162deg at calc(var(--s)*0.5)  0                  ,var(--v2));
+  -webkit-mask-size: var(--s) var(--s);
+  -webkit-mask-composite: xor,destination-over;
+  mask-composite: exclude,add;
+  background:
+    linear-gradient(rgba(80, 180, 152,var(--o,0.3)) 0 0),
+    linear-gradient(rgba(84, 141, 171)                       0 0)
+    #ccc;
+  background-size:calc(var(--l,0)*var(--s)) 100%,calc(var(--p,0)*var(--s)) 100%;
+  background-repeat:no-repeat;
+}
+
+.stars:focus-within {
+  outline:1px solid;
+}
+
+input:active ~ i{--o:1}
+
+input:nth-of-type(1):checked ~ i {--p:1}
+input:nth-of-type(2):checked ~ i {--p:2}
+input:nth-of-type(3):checked ~ i {--p:3}
+input:nth-of-type(4):checked ~ i {--p:4}
+input:nth-of-type(5):checked ~ i {--p:5}
+input:nth-of-type(6):checked ~ i {--p:6}
+input:nth-of-type(7):checked ~ i {--p:7}
+input:nth-of-type(8):checked ~ i {--p:8}
+input:nth-of-type(9):checked ~ i {--p:9}
+input:nth-of-type(10):checked ~ i {--p:10}
+/*input:nth-of-type(N):checked ~ i {--p:N}*/
+
+input:nth-of-type(1):hover ~ i {--l:1}
+input:nth-of-type(2):hover ~ i {--l:2}
+input:nth-of-type(3):hover ~ i {--l:3}
+input:nth-of-type(4):hover ~ i {--l:4}
+input:nth-of-type(5):hover ~ i {--l:5}
+input:nth-of-type(6):hover ~ i {--l:6}
+input:nth-of-type(7):hover ~ i {--l:7}
+input:nth-of-type(8):hover ~ i {--l:8}
+input:nth-of-type(9):hover ~ i {--l:9}
+input:nth-of-type(10):hover ~ i {--l:10}
+/*input:nth-of-type(N):hover ~ i {--l:N}*/
+
+
+/* Authentication Page */
+.auth-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Reviews */
+.error_message {
+  font-weight: bold;
+  color: #D32F2F;
+}
+
+
+.review_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Review Item */
+.review_item {
+    background-color: #2f3e46;
+    border-radius: 8px;
+    padding: 15px;
+    color: #e8ffef;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+
+.review_item strong {
+    color: #50B498;
+}
+
+
+/* Authentication */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container .title {
+    color: #2f3e46;
+}
+
+.auth-form-container {
+    width: 800px;
+    height: 400px;
+    background-color: #e8ffef;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form label {
+    color: #2f3e46;
+    margin-top: 10px;
+}
+
+.auth-form-field {
+    display: flex:
+    border: 2px solid #ccc;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.auth-form-field input {
+    width: 600px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border: 1px solid #4eb29d;
+    border-radius: 2px;
+
+}
+
+.auth-form-field input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.auth-errors {
+    color: #50B498;
+    font-size: 11px;
+}
+
+.auth-submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-submit-button input {
+    width: 50%;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2f3e46;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-submit-button input:hover {
+    background-color: #33876f;
+}
+
+.auth-redirect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.auth-redirect p{
+    color: #33876f;
+}
+
+/* all playlist css stuff */
+
+.playlist-button {
+    background-color: white;
+    border: 2px solid #50B498;
+    border-radius: 15px;
+    color: #2f3e46;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 4px;
+    cursor: pointer;
+}
+
+.playlist-button:hover {
+  background-color: #50B498;
+  border: 2px solid #50B498;
+  color: white;
+  text-decoration:underline;
+}
+
+.playlist-container {
+    background-color: #181818;
+    color: white;
+    padding: 20px 30px;
+    min-height: 100vh;
+}
+
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #282828;
+}
+
+.playlist-header h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.playlist-list {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #282828;
+}
+
+.playlist-episode-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.playlist-episode-info {
+    flex-grow: 1;
+}
+
+.playlist-episode-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.playlist-episode-author {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin-top: 3px;
+}
+
+
+/*Redirect*/
+.redirect-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.browse-content {
+    text-align: center;
+}
+
+.browse-content h1 {
+    color: #50B498;
+    padding: 15px;
+}
+
+.browse-content form {
+    display: inline-block;
+}
+
+.browse-content select,
+.browse-content input[type="search"],
+.browse-content button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #50B498;
+    background-color: #2f3e46;
+    color: #e8ffef;
+    margin: 0 5px;
+}
+
+.browse-content input[type="search"] {
+    width: 600px;
+}
+
+.browse-content button:hover {
+    background-color: #50B498;
+    color: white;
+}
+
+#episode_container {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#podcast_desc {
+  width:60vw;
+  margin: 0 auto;
+}

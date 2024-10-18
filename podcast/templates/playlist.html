@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Playlist</title>
+    <link
+      rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='image/logo.png') }}"/>
+</head>
+<body>
+    <header>
+        {% include "navbar.html" %}
+    </header>
+
+    <div class="playlist-container">
+        <p><button onclick="window.history.back()" class="button">↩ Back to Previous Page</button></p>
+
+        <div class="playlist-content">
+            <header class="playlist-header">
+                <h1>{{ playlist.playlist_name }}</h1>
+            </header>
+
+            <ul class="playlist-list">
+                {% if episodes %}
+                    {% for episode in episodes %}
+                    <li class="playlist-item">
+                        <img src="{{ episode.podcast_details.image }}" alt="{{ episode.title }}" class="playlist-episode-icon">
+
+                        <div class="playlist-episode-info">
+                            <h4><a href="{{ url_for('podcasts_bp.show_episode', episode_id=episode.episode_id) }}">{{ episode.title }}</a></h4>
+                            <p class="playlist-episode-author">{{ episode.podcast_id.author }}</p>
+                        </div>
+
+                        <form method="POST" action="{{ url_for('playlist_bp.remove_episode', episode_id=episode.episode_id) }}" class="remove-button-form">
+                            <button type="submit" class="playlist-button">Remove</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <p> No episodes in the playlist. </p>
+                {% endif %}
+            </ul>
+            <div id="page_navigation">
+                {% if num_pages == 1 %}
+                    <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                    <b>{{ page }}</b>
+                    <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                {% elif page > 1 and page < num_pages %}
+                    <a href="{{ url_for('playlist_bp.view_playlist', playlist_id=playlist.playlist_id, page=page-1)}}">
+                    <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                    </a>
+                    <b>{{ page }}</b>
+                    <a href="{{ url_for('playlist_bp.view_playlist', playlist_id=playlist.playlist_id, page=page+1)}}">
+                    <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                    </a>
+                {% elif page <= 1 %}
+                    <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                    <b>{{ page }}</b>
+                    <a href="{{ url_for('playlist_bp.view_playlist', playlist_id=playlist.playlist_id, page=page+1)}}">
+                    <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                    </a>
+                {% elif page >= num_pages %}
+                    <a href="{{ url_for('playlist_bp.view_playlist', playlist_id=playlist.playlist_id, page=page-1)}}">
+                    <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                    </a>
+                    <b>{{ page }}</b>
+                    <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

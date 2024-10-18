@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ episode.title }} Description</title>
+    <link
+      rel="stylesheet" href="../static/css/main.css"/>
+    <link rel="icon"
+      type="image/png"
+      href="../static/image/logo.png"/>
+</head>
+<body>
+<header>
+    {% include "navbar.html" %}
+</header>
+<main class="content">
+    <!-- I am only giving a back button to the episodes' parent podcast - not to all the podcasts. if you want to go back to the list, click browse in the navbar -->
+        <p><button onclick="window.history.back()" class="button">↩ Back to Previous</button></p>
+    <div id="episode_container">
+
+        <h1>{{ episode.title }}</h1>
+    <ul>
+        <li><p><strong>Description:</strong> {{ episode.description }}</p></li>
+        <li><p><strong>Publication Date:</strong> {{ episode.pub_date }}</p></li>
+        <li><p><strong>Audio Length:</strong> {{ episode.audio_length }}s</p></li>
+        <li>
+          <p><strong><a href="{{ episode.audio_link }}">Listen Here</a>:</strong></p>
+          <audio controls>
+            <source src="{{ episode.audio_link }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </li>
+    </ul>
+    <form method="POST" action="{{ url_for('playlist_bp.add_to_playlist', episode_id=episode.episode_id) }}">
+            <button type="submit" class="playlist-button">Add Episode to Playlist</button>
+    </form>
+    </div>
+</main>
+    </div>
+{% include "footer.html" %}
+</body>
+</html>

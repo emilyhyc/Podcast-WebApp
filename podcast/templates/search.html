@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link
+      rel="stylesheet" href="../static/css/main.css"
+    />
+    <link rel="icon"
+      type="image/png"
+      href="../static/image/logo.png"/>
+</head>
+<body>
+<header>
+    {% include "navbar.html" %}
+</header>
+<main>
+    <div class="browse-content">
+    {% if query %}
+        {% if results %}
+            <div class="podcast-info">
+                <h1>Podcast Results for "{{ query }}" in {{ search_by }}</h1>
+            </div>
+        {% else %}
+            <h1>No results found for "{{ query }}" in {{ search_by }}</h1>
+        {% endif %}
+    {% else %}
+        <h1>Search All Podcasts</h1>
+    {% endif %}
+
+    <form method="GET" action="{{ url_for('search_bp.search') }}">
+            <select id="filter" name="attribute">
+                <option value="title" {% if search_by == 'title' %}selected{% endif %}>Title</option>
+                <option value="category" {% if search_by == 'category' %}selected{% endif %}>Category</option>
+                <option value="author" {% if search_by == 'author' %}selected{% endif %}>Author</option>
+            </select>
+            <input type="search" id="query" name="q" placeholder="Search Podcasts...">
+            <button type="search_button">Search</button>
+        </form>
+</div>
+
+<div class="browse-content">
+    <br>
+    {% if results %}
+        <div class="browse-container">
+            <div class="podcast-grid-container">
+                {% for podcast in results %}
+                <div class="podcast-item">
+                    <a href="{{ url_for('podcasts_bp.show_description', previous_url='search', podcast_id=podcast.id, q=query, attribute=search_by, page=page) }}">
+                        <img class="browse-podcast-img" src="{{ podcast.image }}"/>
+                    </a>
+                    <div class="browse-podcast-title">
+                        <p><a href="{{ url_for('podcasts_bp.show_description', previous_url='search', podcast_id=podcast.id) }}">
+                            {{ podcast.title }}
+                        </a></p>
+                        <p class="browse-podcast-cat">
+                            {% for category in podcast.categories %}
+                                {{ category.name }}{% if not loop.last %} | {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="page_navigation">
+            {% if num_pages == 1 %}
+                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                <b>{{ page }}</b>
+                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+            {% elif page > 1 and page < num_pages %}
+                <a href="{{ url_for('search_bp.search', q=query, attribute=search_by, page=page-1) }}">
+                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                </a>
+                <b>{{ page }}</b>
+                <a href="{{ url_for('search_bp.search', q=query, attribute=search_by, page=page+1) }}">
+                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                </a>
+            {% elif page <= 1 %}
+                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                <b>{{ page }}</b>
+                <a href="{{ url_for('search_bp.search', q=query, attribute=search_by, page=page+1) }}">
+                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                </a>
+            {% elif page >= num_pages %}
+                <a href="{{ url_for('search_bp.search', q=query, attribute=search_by, page=page-1) }}">
+                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                </a>
+                <b>{{ page }}</b>
+                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+<br>
+</main>
+{% include "footer.html" %}
+</body>
+</html>

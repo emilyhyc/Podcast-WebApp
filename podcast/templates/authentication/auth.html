@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <link rel="icon"
+      type="image/png"
+      href="../static/image/logo.png"/>
+    <link
+      rel="stylesheet" href="../static/css/main.css"
+    />
+</head>
+<body>
+    <header>
+    {% include 'navbar.html' %}
+    </header>
+
+    <main class = "auth-container">
+        <div class="auth-form-container">
+        <h1 class="title">{{ title }}</h1>
+            <br>
+        <form method="POST" action="{{ handler_url }}">
+            {{ form.csrf_token }}
+                <div class="auth-form-field">
+                    {{ form.username.label }}
+                    {{ form.username }}
+                    {% if form.username.errors or user_message is not none %}
+                    <div class="auth-errors">
+                        {% if user_message is not none %}
+                            <p>
+                                {{ user_message }}
+                            </p>
+                        {% endif %}
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            <br>
+                <div class="auth-form-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                    {% if form.password.errors or password_message is not none %}
+                    <div class="auth-errors">
+                        {% if password_message is not none %}
+                            <p>
+                                {{ password_message }}
+                            </p>
+                        {% endif %}
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            <br>
+            <div class="auth-submit-button">
+                {{ form.submit }}
+            </div>
+            <div class="auth-redirect">
+                {% if title == "Register" %}
+                <p>Already have an account?</p>
+                <a href="{{ url_for('auth_bp.login') }}">
+                    sign-in
+                </a>
+            {% else %}
+                <p>Don't have an account?</p>
+                <a href="{{ url_for('auth_bp.register') }}">
+                    sign-up
+                </a>
+            {% endif %}
+            </div>
+            <br>
+            <a href="{{ url_for('auth_bp.logout') }}">Choose to log out?</a>
+
+        </form>
+        </div>
+
+    </main>
+
+{% include "footer.html" %}
+
+</body>
+</html>

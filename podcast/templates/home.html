@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link
+      rel="stylesheet" href="../static/css/main.css"
+    />
+    <link rel="icon"
+      type="image/png"
+      href="../static/image/logo.png"/>
+</head>
+
+<body style="background-color:black">
+    <header>
+        {% include "navbar.html" %}
+    </header>
+
+    <div class="image-container">
+        <img src="../static/image/background.png"/>
+        <main class="content">
+            <div class="overlay-text">
+            <div class="overlay-title">
+                {% if 'username' in session %}
+                <p>Welcome {{ session['username'] }} to Anteater Podcast!</p>
+                    {% else %}
+                        Welcome to Anteater Podcast!
+                    {% endif %}
+            </div> <br>
+                With {{ num_podcasts }} podcasts and {{ num_episodes }} episodes, you'll be sure to find something you're looking for!
+             <br><br>
+                <a href="{{ url_for('browse_bp.browse', page=1) }}"><button class="button">Browse Podcasts</button></a>
+                <a href="{{ url_for('categories_bp.categories') }}"><button class="button">View Categories</button></a>
+            </div>
+        </main>
+    </div>
+{% include "footer.html" %}
+</body>
+</html>

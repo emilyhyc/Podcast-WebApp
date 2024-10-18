@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ podcast.title }} Description</title>
+    <link
+      rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='image/logo.png') }}"/>
+</head>
+<body>
+      {% include "navbar.html" %}
+      <div id="container">
+        <main class="content">
+            <div class="description">
+<!--                <a href="history.back()" class="button">↩ Back to all Podcasts</a>-->
+                <button onclick="window.location.href='/{{ previous }}';" class="button">↩ Back to Previous</button>
+                <div class="podcast-info">
+                    <h2>{{ podcast.title }}</h2>
+                    <img src="{{ podcast.image }}" alt="Podcast Image" class="podcast-image">
+                    <p><strong>Author:</strong> {{ podcast.author.name }}</p>
+                    <p><strong>Language:</strong> {{podcast.language }} </p>
+                    <p><strong>Categories:</strong>
+                        {% for category in podcast.categories %}
+                            {{ category.name }}{% if not loop.last %} | {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p id="podcast_desc"><strong>Description:</strong> {{ podcast.description }}</p>
+                    <p><strong>Website:</strong> <a href="{{ podcast.website }}" target="_blank">{{ podcast.website }}</a></p>
+                    <p><strong>Rating:</strong> {{ avg_rating }}</p>
+
+                    <a href="{{ url_for('review_bp.review', previous_url=previous, podcast_id = podcast.id) }}" class="button" >Reviews</a>
+
+
+                </div>
+            </div>
+
+        <section>
+            <form action="{{ url_for('playlist_bp.add_podcast_episodes_to_playlist', podcast_id=podcast.id) }}" method="post">
+                <button type="submit" class="playlist-button">Add All Episodes to Playlist</button>
+            </form>
+            <h2>Episodes</h2>
+            {% if episodes %}
+                <ul>
+                    {% for episode in episodes %}
+                        <li>
+                            <h3><a href="{{ url_for('podcasts_bp.show_episode', episode_id=episode.episode_id) }}">{{ episode.title }}</a></h3>
+                            <p><strong>Description:</strong> {{ episode.description }}</p>
+                            <p><strong>Publication Date:</strong> {{ episode.pub_date }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div id="page_navigation">
+                    {% if num_pages == 1 %}
+                        <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                        <b>{{ page }}</b>
+                        <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                    {% elif page > 1 and page < num_pages %}
+                        <a href="{{ url_for('podcasts_bp.show_description', previous_url=previous, podcast_id=podcast.id, page=page-1)}}">
+                            <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                        </a>
+                        <b>{{ page }}</b>
+                        <a href="{{ url_for('podcasts_bp.show_description', previous_url=previous, podcast_id=podcast.id, page=page+1)}}">
+                            <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                        </a>
+                    {% elif page <= 1 %}
+                        <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                        <b>{{ page }}</b>
+                        <a href="{{ url_for('podcasts_bp.show_description', previous_url=previous, podcast_id=podcast.id, page=page+1)}}">
+                            <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                        </a>
+                    {% elif page >= num_pages %}
+                        <a href="{{ url_for('podcasts_bp.show_description', previous_url=previous, podcast_id=podcast.id, page=page-1)}}">
+                            <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                        </a>
+                        <b>{{ page }}</b>
+                        <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                    {% endif %}
+                    <br>
+                </div>
+            {% else %}
+                <p>No episodes published.</p>
+            {% endif %}
+        </section>
+        </main>
+      </div>
+{% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Write a Review</title>
+    <link
+      rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='image/logo.png') }}"/>
+</head>
+<body>
+    <header>
+        {% include "navbar.html" %}
+    </header>
+        <main class="content">
+            <div id="container">
+                <a href="{{ url_for('podcasts_bp.show_description', previous_url=previous, podcast_id=podcast.id) }}" class="button">↩ Back to {{ podcast.title }}</a>
+                <div class="podcast-info">
+                    <h2>Write a review for '{{ podcast.title }}'</h2>
+                    <img src="{{ podcast.image }}" alt="Podcast Image" class="podcast-image">
+                    <form method="POST" action="{{ url_for('review_bp.review', previous_url=previous,podcast_id=podcast.id) }}">
+                    {% if error%}
+                        <div class="error_message">
+                           <p> {{ error }}</p>
+                        </div>
+                    {% endif %}
+                  <div class="stars">
+                      <input type="radio" name="rating" value="1" />
+                      <input type="radio" name="rating" value="2" />
+                      <input type="radio" name="rating" value="3" />
+                      <input type="radio" name="rating" value="4" />
+                      <input type="radio" name="rating" value="5" />
+                      <i></i>
+                  </div>
+                    <br>
+                    <br>
+                    <textarea rows="5" cols="33" name="comment" placeholder="Write a comment...">{{ comment }}</textarea>
+                    <br>
+                    <br>
+                    <button type="submit">Post Review</button>
+                </form>
+                    <br>
+                    {% if all_reviews %}
+                    <h3><u>All Reviews for {{ podcast.title }}</u></h3>
+                    <ul class="review_list">
+                        {% for review in all_reviews %}
+                        <li class="review_item">
+                            <strong class="review_user">User:</strong> {{ review.user.username }} <br>
+                            <strong class="review_rating">Rating:</strong>
+                            {% for i in range(review.rating) %}
+                                ⭐
+                            {% endfor %}
+                            ({{ review.rating }}/5)<br>
+                            <strong class="review_comment">Comment:</strong> {{ review.comment }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div id="page_navigation">
+                        {% if num_pages == 1 %}
+                            <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                            <b>{{ page }}</b>
+                            <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                        {% elif page > 1 and page < num_pages %}
+                            <a href="{{ url_for('review_bp.review', previous_url=previous, podcast_id=podcast.id, page=page-1) }}">
+                                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                            </a>
+                            <b>{{ page }}</b>
+                            <a href="{{ url_for('review_bp.review', previous_url=previous, podcast_id=podcast.id, page=page+1) }}">
+                                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                            </a>
+                        {% elif page <= 1 %}
+                            <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                            <b>{{ page }}</b>
+                            <a href="{{ url_for('review_bp.review', previous_url=previous, podcast_id=podcast.id, page=page+1) }}">
+                                <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                            </a>
+                        {% elif page >= num_pages %}
+                            <a href="{{ url_for('review_bp.review', previous_url=previous, podcast_id=podcast.id, page=page-1) }}">
+                                <img class="previous_page" src="{{ url_for('static', filename='image/previous.png') }}" />
+                            </a>
+                            <b>{{ page }}</b>
+                            <img class="next_page" src="{{ url_for('static', filename='image/next.png') }}" />
+                        {% endif %}
+                        <br>
+                    </div>
+                    {% else %}
+                        <h3><i>No Reviews Yet. Be the first to review {{ podcast.title }}!</i></h3>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    {% include "footer.html" %}
+    </body>
+</html>

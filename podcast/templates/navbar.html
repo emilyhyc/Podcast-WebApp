@@ -1,0 +1,15 @@
+<nav>
+     <div class="navbar">
+         <ul>
+             <div class="new_div">
+                 <a href="{{ url_for('home_bp.home') }}"> <img id="logo" src="{{ url_for('static', filename='image/logo.png') }}"></a>
+                 <h3>Anteater Podcast</h3>
+             </div>
+             <li><a href="{{ url_for('auth_bp.login') }}"> <img id="profile" src="{{ url_for('static', filename='image/Profile.png') }}"></a></li>
+             <li><a href="{{ url_for('playlist_bp.view_playlist') }}">Playlist</a></li>
+             <li><a href="{{ url_for('categories_bp.categories') }}">Categories</a></li>
+             <li><a href="{{ url_for('browse_bp.browse', page=1) }}">Browse</a></li>
+             <li><a href="{{ url_for('home_bp.home') }}">Home</a></li>
+         </ul>
+     </div>
+</nav>
